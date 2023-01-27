@@ -1,5 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-import { Task } from './Task'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity('users')
 export class User {
@@ -17,7 +16,4 @@ export class User {
 
   @Column({ type: 'text', nullable: true })
   avatar: string
-
-  @OneToMany(() => Task, (task) => task.user)
-  tasks: Task[]
 }

@@ -4,6 +4,7 @@ import { AppDataSource } from './data-source'
 import { errorMiddleware } from './middlewares/error'
 import login from './routes/login'
 import user from './routes/user'
+import task from './routes/task'
 
 AppDataSource.initialize().then(() => {
   const app = express()
@@ -15,6 +16,7 @@ AppDataSource.initialize().then(() => {
 
   app.use('/users', user)
   app.use('/login', login)
+  app.use('/tasks', task)
 
   app.use(errorMiddleware)
   return app.listen(process.env.PORT, () => {
