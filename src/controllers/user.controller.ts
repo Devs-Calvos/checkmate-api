@@ -8,4 +8,8 @@ export class UserController {
     const newUser = await new UserService().create(user)
     return res.status(201).json(newUser)
   }
+
+  async getProfile(req: Request, res: Response) {
+    return res.json(req.user)
+  }
 }

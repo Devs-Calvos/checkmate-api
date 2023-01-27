@@ -2,6 +2,7 @@ import express from 'express'
 import 'express-async-errors'
 import { AppDataSource } from './data-source'
 import { errorMiddleware } from './middlewares/error'
+import login from './routes/login'
 import user from './routes/user'
 
 AppDataSource.initialize().then(() => {
@@ -13,6 +14,7 @@ AppDataSource.initialize().then(() => {
   })
 
   app.use('/users', user)
+  app.use('/login', login)
 
   app.use(errorMiddleware)
   return app.listen(process.env.PORT, () => {
