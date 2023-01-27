@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { createTaskSchema } from '../schemas/create-task.schema'
+import { idParam } from '../schemas/param.schema'
 import { TaskService } from '../services/task.service'
 
 export class TaskController {
@@ -16,8 +17,17 @@ export class TaskController {
 
   async finish(req: Request, res: Response) {
     const { id } = req.params
+    const validId = idParam.parse(id)
 
-    await new TaskService().finish(Number(id))
-    return res.json({ message: `Task ${id} finished` })
+    await new TaskService().finish(validId)
+    return res.json({ message: `Task finished` })
+  }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params
+    const validId = idParam.parse(id)
+
+    await new TaskService().delete(validId)
+    return res.json({ message: `Task deleted` })
   }
 }

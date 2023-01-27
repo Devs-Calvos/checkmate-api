@@ -17,6 +17,9 @@ export class Task {
   @CreateDateColumn()
   created_at: Date
 
+  @Column({ type: 'timestamp', nullable: true })
+  finished_at: Date
+
   @DeleteDateColumn()
   deleted_at: Date
 }

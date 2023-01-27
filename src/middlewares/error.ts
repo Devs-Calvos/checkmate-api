@@ -11,7 +11,7 @@ export const errorMiddleware = (
   console.log(error)
 
   if (error instanceof ZodError) {
-    return res.status(400).json(error.flatten().fieldErrors)
+    return res.status(400).json(error.flatten())
   }
 
   const status = error.status ?? 500
