@@ -13,8 +13,6 @@ services:
       - db
     stdin_open: true
     tty: true
-    networks:
-      - checknet
   db:
     build: postgres
     image: checkmate_postgres_15
@@ -27,9 +25,3 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     hostname: postgres
-    networks:
-      - checknet
-
-networks:
-  checknet:
-    name: checkmate-network
