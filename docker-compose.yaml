@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/api
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+    networks:
+      - checknet
+  db:
+    build: postgres
+    image: checkmate_postgres_15
+    volumes:
+      - $HOME/.postgres/checkmate/data/postgresql:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DBS=checkmate
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    hostname: postgres
+    networks:
+      - checknet
+
+networks:
+  checknet:
+    name: checkmate-network
