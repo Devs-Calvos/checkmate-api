@@ -17,7 +17,7 @@ export class TaskController {
 
   async finish(req: Request, res: Response) {
     const { id } = req.params
-    const validId = idParam.parse(id)
+    const validId = idParam.parse(Number(id))
 
     await new TaskService().finish(validId)
     return res.json({ message: `Task finished` })
@@ -25,7 +25,7 @@ export class TaskController {
 
   async delete(req: Request, res: Response) {
     const { id } = req.params
-    const validId = idParam.parse(id)
+    const validId = idParam.parse(Number(id))
 
     await new TaskService().delete(validId)
     return res.json({ message: `Task deleted` })

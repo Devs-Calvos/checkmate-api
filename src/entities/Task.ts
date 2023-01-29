@@ -20,6 +20,6 @@ export class Task {
   @Column({ type: 'timestamp', nullable: true })
   finished_at: Date
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ select: false })
   deleted_at: Date
 }
