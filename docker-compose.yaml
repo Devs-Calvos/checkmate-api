@@ -2,9 +2,7 @@ version: '3.9'
 
 services:
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
       - '3000:3000'
     volumes:
@@ -14,14 +12,12 @@ services:
     stdin_open: true
     tty: true
   db:
-    build: postgres
-    image: checkmate_postgres_15
+    image: bitnami/postgresql:latest
     volumes:
       - $HOME/.postgres/checkmate/data/postgresql:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_DBS=checkmate
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    hostname: postgres
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_DATABASE=checkmate
