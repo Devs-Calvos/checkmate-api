@@ -1,5 +1,5 @@
 # Build the app image
-FROM node:latest
+FROM node:18
 
 # Create directory for the app user
 RUN mkdir /api
@@ -11,6 +11,5 @@ WORKDIR $APP_HOME
 
 # install
 COPY . .
-RUN npm install
 
-CMD ["npm", "run", "dev"]
+CMD ["./docker-entrypoint.sh"]

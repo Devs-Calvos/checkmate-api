@@ -9,8 +9,6 @@ services:
       - .:/api
     depends_on:
       - db
-    stdin_open: true
-    tty: true
   db:
     image: bitnami/postgresql:latest
     volumes:
